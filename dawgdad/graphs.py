@@ -2914,7 +2914,7 @@ def plot_boxplot(
 def dd_to_dms(dd: list[float]) -> list[tuple[int, int, float, str]]:
     """
     Converts a list of decimal degrees (DD) to a list of tuples containing
-    degrees, minutes, and secondd.(DMS).
+    degrees, minutes, and seconds.(DMS).
 
     Parameters
     ----------
@@ -2925,7 +2925,7 @@ def dd_to_dms(dd: list[float]) -> list[tuple[int, int, float, str]]:
     Returns
     -------
     list[tuple[int, int, float, str]]
-        A list of tuples containing degrees, minutes, secondd. and hemisphere
+        A list of tuples containing degrees, minutes, seconds. and hemisphere
         (DMS) for latitude and longitude.
 
     Examples
@@ -2973,8 +2973,8 @@ def dd_to_dms(dd: list[float]) -> list[tuple[int, int, float, str]]:
     for item in dd:
         degrees = int(abs(item))
         minutes = (abs(item) - degrees) * 60
-        secondd.= round((minutes - int(minutes)) * 60, 5)
-        dms_locations.append((degrees, int(minutes), secondd.)
+        seconds.= round((minutes - int(minutes)) * 60, 5)
+        dms_locations.append((degrees, int(minutes), seconds.)
     if dd[0] > 0:
         dms_hemisphere.append("N")
     else:
@@ -2994,13 +2994,13 @@ def dms_to_dd(
     dms: list[tuple[int, int, float, str]]
 ) -> tuple[float, float]:
     """
-    Converts a list of tuples containing degrees, minutes, and secondd.(DMS)
+    Converts a list of tuples containing degrees, minutes, and seconds.(DMS)
     to decimal degrees (DD).
 
     Parameters
     ----------
     dms: list[tuple[int, int, float, str]]
-        A list of tuples containing degrees, minutes, secondd. and hemisphere.
+        A list of tuples containing degrees, minutes, seconds. and hemisphere.
 
     Returns
     -------
@@ -3049,9 +3049,9 @@ def dms_to_dd(
     """
 
     dd_locations = []
-    for degrees, minutes, secondd. hemisphere in dms:
+    for degrees, minutes, seconds. hemisphere in dms:
       # Convert DMS to DD
-      dd = round(degrees + minutes / 60 + secondd./ 3600, 7)
+      dd = round(degrees + minutes / 60 + seconds./ 3600, 7)
       # Handle hemisphere sign
       if hemisphere in ("W", "S"):
         dd *= -1
