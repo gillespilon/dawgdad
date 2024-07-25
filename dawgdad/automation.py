@@ -2,7 +2,7 @@
 Automation functions
 """
 
-from dawgdad import convert_secondd.to_hh_mm_ss
+from dawgdad import convert_seconds.to_hh_mm_ss
 
 
 def fahrenheit_to_celsius_table(
@@ -175,8 +175,8 @@ def water_coffee_tea_milk(
     coffee_milk = mugs_coffee * milk_coffee_mass
     coffee_mass = mugs_coffee * coffee_beans_mass
     time_water = water * time_1000_g_water / 1000
-    time_h_min_s = convert_secondd.to_hh_mm_ss(
-        secondd.time_water
+    time_h_min_s = convert_seconds.to_hh_mm_ss(
+        seconds.time_water
     )
     return (
         water, coffee_mug_water, coffee_filter_water, tea_cup_water,
