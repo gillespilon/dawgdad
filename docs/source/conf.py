@@ -15,7 +15,7 @@ sys.path.insert(0, '/home/gilles/documents/repositories/virtual/venv/lib/python3
 project = 'dawgdad'
 copyright = '2025, Gilles Pilon'
 author = 'Gilles'
-release = '1.0.0'
+release = '1.0.2'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
