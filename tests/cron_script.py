@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 """
-Execute pytest for d2s2.
+Execute pytest for dawgdad.
 """
 
 from pathlib import Path
