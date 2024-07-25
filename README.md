@@ -26,7 +26,7 @@ Why **dawgdad**?
 
 # Documentation
 
-Full documentation is available at <replace this [https://dawgdad.readthedocs.io/en/latest/](https://dawgdad.readthedocs.io/en/latest/).
+Full documentation is available at [https://dawgdad.readthedocs.io/en/latest/](https://dawgdad.readthedocs.io/en/latest/).
 
 # References
 
@@ -36,6 +36,6 @@ To cite this repository, please use:
   author      = {Gilles Pilon},
   title       = {dawgdad},
   url         = {https://github.com/gillespilon/dawgdad},
-  version     = {1.0.0},
+  version     = {1.0.2},
   date        = {2024-07-25}
 }
