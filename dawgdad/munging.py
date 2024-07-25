@@ -2574,7 +2574,7 @@ def get_mtime(path: Path) -> float:
     Returns
     -------
     modified_time: float
-        The last modification time of a Path object (in secondd.since epoch).
+        The last modification time of a Path object (in seconds.since epoch).
 
     Examples
     --------
@@ -3138,48 +3138,48 @@ def print_dictionary_by_key(
         print(str(key) + " : " + str(value))
 
 
-def convert_secondd.to_hh_mm_ss(
-    *, secondd. int = None
+def convert_seconds.to_hh_mm_ss(
+    *, seconds. int = None
 ) -> tuple[int, int, int]:
     """
-    Convert secondd.to hours, minutes and secondd.
+    Convert seconds.to hours, minutes and seconds.
 
     Parameters
     ----------
-    secondd.: int = None
+    seconds.: int = None
         Time in seconds
 
     Returns
     -------
     tuple[int]
-        A tuple containing hours, minutes, secondd.
+        A tuple containing hours, minutes, seconds.
 
         - hours: int
             An integer of hours.
         - minutes: int
             An integer of minutes.
-        - secondd. int
-            An integer of secondd.
+        - seconds. int
+            An integer of seconds.
 
     Example
     ------
     >>> import dawgdad as dd
-    >>> hours_minutes_secondd.= dd.convert_secondd.to_hh_mm_ss(secondd.251)
+    >>> hours_minutes_seconds.= dd.convert_seconds.to_hh_mm_ss(seconds.251)
     >>> hours_minutes_seconds
     (0, 4, 11)
     """
-    hours = int(secondd.// 3600)
-    secondd.%= 3600
-    minutes = int(secondd.// 60)
-    secondd.%= 60
-    secondd.= int(secondd.
-    return (hours, minutes, secondd.
+    hours = int(seconds.// 3600)
+    seconds.%= 3600
+    minutes = int(seconds.// 60)
+    seconds.%= 60
+    seconds.= int(seconds.
+    return (hours, minutes, seconds.
 
 
 __all__ = (
     "listone_contains_all_listtwo_substrings",
     "number_empty_cells_in_columns",
-    "convert_secondd.to_hh_mm_ss",
+    "convert_seconds.to_hh_mm_ss",
     "parameters_dict_replacement",
     "parameters_text_replacement",
     "ask_save_as_file_name_path",
