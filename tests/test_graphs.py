@@ -90,20 +90,20 @@ def test_style_graph():
 
 
 def test_dd_to_dms():
-    dd = [45.4250225, -75.6970594]
-    result = dd.dd_to_dms(dd=dd)
+    decdeg = [45.4250225, -75.6970594]
+    result = dd.dd_to_dms(decdeg=decdeg)
     expected = [(45, 25, 30.081, 'N'), (75, 41, 49.41384, 'W')]
     assert result == expected
-    dd = [48.858393, 2.257616]
-    result = dd.dd_to_dms(dd=dd)
+    decdeg = [48.858393, 2.257616]
+    result = dd.dd_to_dms(decdeg=decdeg)
     expected = [(48, 51, 30.2148, 'N'), (2, 15, 27.4176, 'E')]
     assert result == expected
-    dd = [-13.163194, -72.547842]
-    result = dd.dd_to_dms(dd=dd)
+    decdeg = [-13.163194, -72.547842]
+    result = dd.dd_to_dms(decdeg=decdeg)
     expected = [(13, 9, 47.4984, 'S'), (72, 32, 52.2312, 'W')]
     assert result == expected
-    dd = [-33.8567433, 151.1784306]
-    result = dd.dd_to_dms(dd=dd)
+    decdeg = [-33.8567433, 151.1784306]
+    result = dd.dd_to_dms(decdeg=decdeg)
     expected = [(33, 51, 24.27588, 'S'), (151, 10, 42.35016, 'E')]
     assert result == expected
 
