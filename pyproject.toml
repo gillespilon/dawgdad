@@ -14,7 +14,6 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-requires-python = ">=3.12.4"
 dependencies = [
     "basis_expansions",
     "cached_property",
