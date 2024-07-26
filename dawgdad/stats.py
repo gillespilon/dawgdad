@@ -2577,16 +2577,26 @@ def linear_regression(
         method="pinv",
         cov_type="nonrobust"
     )
+
+    predictions = fitted_model.predict(X)
+    # Confidence intervals
+    # Note: statsmodels 0.14.2 doesn't directly provide confidence intervals, so we calculate them manually
+    pred_std_err = np.sqrt(fitted_model.scale * np.diag(X.dot(np.linalg.inv(X.T.dot(X)).dot(X.T))))
+    t_values = np.abs(fitted_model.tvalues)
+    df_resid = fitted_model.df_resid  # Degrees of freedom for residuals
+    conf_level = 0.95
+    t_crit = np.abs(fitted_model.t_test(np.eye(len(fitted_model.params))).tvalue[1])  # Critical t-value
+    confidence_interval_lower = predictions - t_crit * pred_std_err
+    confidence_interval_upper = predictions + t_crit * pred_std_err
+    # Prediction intervals (approximate)
+    # Note: This is an approximation. For more accurate intervals, consider using bootstrapping or other methods.
+    pred_std_err_pred = np.sqrt(fitted_model.scale * (1 + np.diag(X.dot(np.linalg.inv(X.T.dot(X)).dot(X.T)))))
+    prediction_interval_lower = predictions - t_crit * pred_std_err_pred
+    prediction_interval_upper = predictions + t_crit * pred_std_err_pred
+
     predictions = pd.Series(fitted_model.predict(exog=X))
-    results, measures, columns = (
-        sm.stats.outliers_influence.OLSInfluence.summary_table(
-            fitted_model, alpha=0.05
-        )
-    )
-    confidence_interval_lower, confidence_interval_upper = measures[:, 4:6].T
     confidence_interval_lower = pd.Series(confidence_interval_lower)
     confidence_interval_upper = pd.Series(confidence_interval_upper)
-    prediction_interval_lower, prediction_interval_upper = measures[:, 6:8].T
     prediction_interval_lower = pd.Series(prediction_interval_lower)
     prediction_interval_upper = pd.Series(prediction_interval_upper)
     if print_model_summary:
