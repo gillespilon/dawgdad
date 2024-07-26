@@ -69,7 +69,7 @@ cssselect==1.2.0
 cuda-python==12.5.0
 cycler==0.12.1
 Cython==3.0.10
-dawgdad==1.0.3
+dawgdad==1.0.4
 decorator==5.1.1
 defusedxml==0.7.1
 deprecation==2.1.0
