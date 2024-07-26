@@ -60,22 +60,22 @@ def test_number_empty_cells_in_columns():
     pass
 
 
-def test_convert_seconds.to_hh_mm_ss():
+def test_convert_seconds_to_hh_mm_ss():
     """
     Convert seconds.to hours, minutes and seconds.
     """
-    result = dd. convert_seconds.to_hh_mm_ss(seconds.1)
+    result = dd.convert_seconds_to_hh_mm_ss(seconds=1)
     expected = (0, 0, 1)
     assert result == expected
-    result = dd. convert_seconds.to_hh_mm_ss(seconds.61)
+    result = dd.convert_seconds_to_hh_mm_ss(seconds=61)
     expected = (0, 1, 1)
     assert result == expected
-    result = dd. convert_seconds.to_hh_mm_ss(seconds.3601)
+    result = dd.convert_seconds_to_hh_mm_ss(seconds=3601)
     expected = (1, 0, 1)
     assert result == expected
-    result = dd. convert_seconds.to_hh_mm_ss(seconds.3661)
+    result = dd.convert_seconds_to_hh_mm_ss(seconds=3661)
     expected = (1, 1, 1)
-    result = dd. convert_seconds.to_hh_mm_ss(seconds.251)
+    result = dd.convert_seconds_to_hh_mm_ss(seconds=251)
     expected = (0, 4, 11)
     assert result == expected
 
@@ -484,25 +484,25 @@ def test_delete_empty_rows():
 
 
 def test_delete_list_files():
-    pattern_startswith = ["job_aid.]
+    pattern_startswith = ["job_aids"]
     path = "dir_directories"
     result1 = dd.list_directories(path=path)
     expected1 = [
-        "cheatsheet_directory", "another_directory", "job_aid.directory"
+        "cheatsheet_directory", "another_directory", "job_aids_directory"
     ]
     assert set(result1) == set(expected1)
     result2 = dd.list_directories(
         path=path,
         pattern_startswith=pattern_startswith
     )
-    expected2 = ["job_aid.directory"]
+    expected2 = ["job_aids_directory"]
     assert set(result2) == set(expected2)
-    pattern_startswith = ["job_aid., "cheatsheet"]
+    pattern_startswith = ["job_aids", "cheatsheet"]
     result3 = dd.list_directories(
         path=path,
         pattern_startswith=pattern_startswith
     )
-    expected3 = ["cheatsheet_directory", "job_aid.directory"]
+    expected3 = ["cheatsheet_directory", "job_aids_directory"]
     assert set(result3) == set(expected3)
 
 
@@ -527,25 +527,25 @@ def test_list_change_case():
 
 
 def test_list_directories():
-    pattern_startswith = ["job_aid.]
+    pattern_startswith = ["job_aids"]
     path = "dir_directories"
     result1 = dd.list_directories(path=path)
     expected1 = [
-        'cheatsheet_directory', 'another_directory', 'job_aid.directory'
+        'cheatsheet_directory', 'another_directory', 'job_aids_directory'
     ]
     assert set(result1) == set(expected1)
     result2 = dd.list_directories(
         path=path,
         pattern_startswith=pattern_startswith
     )
-    expected2 = ['job_aid.directory']
+    expected2 = ['job_aids_directory']
     assert set(result2) == set(expected2)
-    pattern_startswith = ["job_aid., "cheatsheet"]
+    pattern_startswith = ["job_aids", "cheatsheet"]
     result3 = dd.list_directories(
         path=path,
         pattern_startswith=pattern_startswith
     )
-    expected3 = ['cheatsheet_directory', 'job_aid.directory']
+    expected3 = ['cheatsheet_directory', 'job_aids_directory']
     assert set(result3) == set(expected3)
 
 
