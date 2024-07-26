@@ -1,5 +1,5 @@
 '''
-dawgdad.library of modules
+dawgdad library of modules
 
 Tools for statistical, graphical, and predictive analysis:
 
