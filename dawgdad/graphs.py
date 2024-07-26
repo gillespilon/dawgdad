@@ -16,7 +16,7 @@ from pathlib import Path
 import math
 
 from scipy.stats import boxcox, boxcox_normplot, norm, probplot
-from dawgdad.import natural_cubic_spline, html_dd
+from dawgdad import natural_cubic_spline, html_dd
 from matplotlib.ticker import StrMethodFormatter
 from matplotlib.offsetbox import AnchoredText
 from matplotlib import rcParams as rc
@@ -2218,8 +2218,8 @@ def plot_histogram(
                 text=f"{str(int(count))}",
                 xy=(x, 0),
                 xytext=(0, -18),
-                xycoordd.("data", "axes fraction"),
-                textcoordd."offset points",
+                xycoords=("data", "axes fraction"),
+                textcoords="offset points",
                 va="top",
                 ha="center",
             )
@@ -2228,8 +2228,8 @@ def plot_histogram(
                 text=percent,
                 xy=(x, 0),
                 xytext=(0, -32),
-                xycoordd.("data", "axes fraction"),
-                textcoordd."offset points",
+                xycoords=("data", "axes fraction"),
+                textcoords="offset points",
                 va="top",
                 ha="center",
             )
@@ -2911,7 +2911,7 @@ def plot_boxplot(
     return (fig, ax)
 
 
-def dd_to_dms(dd: list[float]) -> list[tuple[int, int, float, str]]:
+def dd_to_dms(decdeg: list[float]) -> list[tuple[int, int, float, str]]:
     """
     Converts a list of decimal degrees (DD) to a list of tuples containing
     degrees, minutes, and seconds.(DMS).
@@ -2934,28 +2934,28 @@ def dd_to_dms(dd: list[float]) -> list[tuple[int, int, float, str]]:
     Ottawa Parliament
 
     >>> import dawgdad as dd
-    >>> dd = [45.4250225, -75.6970594]
-    >>> dd. = dd.dd_to_dms(dd=dd)
+    >>> decdeg = [45.4250225, -75.6970594]
+    >>> dms = dd.dd_to_dms(dd=dd)
     >>> dms
     [(45, 25, 30.081, 'N'), (75, 41, 49.41384, 'W')]
 
     Eiffel Tower
 
-    >>> dd = [48.858393, 2.257616]
+    >>> decdeg = [48.858393, 2.257616]
     >>> dms = dd.dd_to_dms(dd=dd)
     >>> dms
     [(48, 51, 30.2148, 'N'), (2, 15, 27.4176, 'E')]
 
     Machu Pichu
 
-    >>> dd = [-13.163194, -72.547842]
+    >>> decdeg = [-13.163194, -72.547842]
     >>> dms = dd.dd_to_dms(dd=dd)
     >>> dms
     [(13, 9, 47.4984, 'S'), (72, 32, 52.2312, 'W')]
 
     Sydney Opera House
 
-    >>> dd = [-33.8567433, 151.1784306]
+    >>> decdeg = [-33.8567433, 151.1784306]
     >>> dms = dd.dd_to_dms(dd=dd)
     >>> dms
     [(33, 51, 24.27588, 'S'), (151, 10, 42.35016, 'E')]
@@ -2970,16 +2970,16 @@ def dd_to_dms(dd: list[float]) -> list[tuple[int, int, float, str]]:
     """
     dms_locations = []
     dms_hemisphere = []
-    for item in dd:
+    for item in decdeg:
         degrees = int(abs(item))
         minutes = (abs(item) - degrees) * 60
-        seconds.= round((minutes - int(minutes)) * 60, 5)
-        dms_locations.append((degrees, int(minutes), seconds.)
-    if dd[0] > 0:
+        seconds = round((minutes - int(minutes)) * 60, 5)
+        dms_locations.append((degrees, int(minutes), seconds))
+    if decdeg[0] > 0:
         dms_hemisphere.append("N")
     else:
         dms_hemisphere.append("S")
-    if dd[1] > 0:
+    if decdeg[1] > 0:
         dms_hemisphere.append("E")
     else:
         dms_hemisphere.append("W")
@@ -3014,29 +3014,29 @@ def dms_to_dd(
 
     >>> import dawgdad as dd
     >>> dms = [(45, 25, 30.081, 'N'), (75, 41, 49.41384, 'W')]
-    >>> dd = dd.dms_to_dd(dms=dms)
-    >>> dd
+    >>> decdeg = dd.dms_to_dd(dms=dms)
+    >>> decdeg
     [45.4250225, -75.6970594]
 
     Eiffel Tower
 
     >>> dms = [(48, 51, 30.2148, 'N'), (2, 15, 27.4176, 'E')]
-    >>> dd = dd.dms_to_dd(dms=dms)
-    >>> dd
+    >>> decdeg = dd.dms_to_dd(dms=dms)
+    >>> decdeg
     [48.858393, 2.257616]
 
     Machu Pichu
 
     >>> dms = [(13, 9, 47.4984, 'S'), (72, 32, 52.2312, 'W')]
-    >>> dd = dd.dms_to_dd(dms=dd.
-    >>> dd
+    >>> decdeg = dd.dms_to_dd(dms=dd.
+    >>> decdeg
     [-13.163194, -72.547842]
 
     Sydney Opera House
 
     >>> dms = [(33, 51, 24.27588, 'S'), (151, 10, 42.35016, 'E')]
-    >>> dd = dd.dms_to_dd(dms=dms)
-    >>> dd
+    >>> decdeg = dd.dms_to_dd(dms=dms)
+    >>> decdeg
     [-33.8567433, 151.1784306]
 
     Notes
@@ -3049,13 +3049,13 @@ def dms_to_dd(
     """
 
     dd_locations = []
-    for degrees, minutes, seconds. hemisphere in dms:
+    for degrees, minutes, seconds, hemisphere in dms:
       # Convert DMS to DD
-      dd = round(degrees + minutes / 60 + seconds./ 3600, 7)
+      decdeg = round(degrees + minutes / 60 + seconds / 3600, 7)
       # Handle hemisphere sign
       if hemisphere in ("W", "S"):
-        dd *= -1
-      dd_locations.append(dd)
+        decdeg *= -1
+      dd_locations.append(decdeg)
     return list(dd_locations)
 
 
