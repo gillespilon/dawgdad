@@ -11,7 +11,7 @@ import psutil
 import string
 import sys
 
-from dawgdad.import random_data, timedelta_data, datetime_data
+from dawgdad import random_data, timedelta_data, datetime_data
 from pandas.api.types import CategoricalDtype
 from beautifultable import BeautifulTable
 import pyarrow.feather as ft
@@ -719,7 +719,7 @@ def save_file(
             index_label=index_label,
             encoding=encoding,
         )
-    elif file_name.suffix in [".odd., ".ODS"]:
+    elif file_name.suffix in [".odd", ".ODS"]:
         excel_writer = pd.ExcelWriter(
             path=file_name,
             engine="odf",
@@ -1098,7 +1098,7 @@ def read_file(
             skip_blank_lines=skip_blank_lines,
             encoding=encoding,
         )
-    elif file_name.suffix in [".odd., ".ODS"]:
+    elif file_name.suffix in [".odd", ".ODS"]:
         df = pd.read_excel(
             io=file_name,
             skiprows=skiprows,
@@ -1318,7 +1318,7 @@ def rename_directory(
     """
     for source, destination in zip(sources, destinations):
         rmtree(path=destination, ignore_errors=ignore_errors)
-        move(src=source, dd.=destination)
+        move(src=source, dst=destination)
 
 
 def copy_directory(
@@ -1353,7 +1353,7 @@ def copy_directory(
     """
     for source, destination in zip(sources, destinations):
         rmtree(path=destination, ignore_errors=ignore_errors)
-        copytree(src=source, dd.=destination)
+        copytree(src=source, dst=destination)
 
 
 def replace_text_numbers(
@@ -3138,8 +3138,8 @@ def print_dictionary_by_key(
         print(str(key) + " : " + str(value))
 
 
-def convert_seconds.to_hh_mm_ss(
-    *, seconds. int = None
+def convert_seconds_to_hh_mm_ss(
+    *, seconds: int = None
 ) -> tuple[int, int, int]:
     """
     Convert seconds.to hours, minutes and seconds.
@@ -3168,18 +3168,18 @@ def convert_seconds.to_hh_mm_ss(
     >>> hours_minutes_seconds
     (0, 4, 11)
     """
-    hours = int(seconds.// 3600)
-    seconds.%= 3600
-    minutes = int(seconds.// 60)
-    seconds.%= 60
-    seconds.= int(seconds.
-    return (hours, minutes, seconds.
+    hours = int(seconds // 3600)
+    seconds %= 3600
+    minutes = int(seconds // 60)
+    seconds %= 60
+    seconds = int(seconds)
+    return (hours, minutes, seconds)
 
 
 __all__ = (
     "listone_contains_all_listtwo_substrings",
     "number_empty_cells_in_columns",
-    "convert_seconds.to_hh_mm_ss",
+    "convert_seconds_to_hh_mm_ss",
     "parameters_dict_replacement",
     "parameters_text_replacement",
     "ask_save_as_file_name_path",
