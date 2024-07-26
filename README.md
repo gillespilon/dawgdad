@@ -36,6 +36,6 @@ To cite this repository, please use:
   author      = {Gilles Pilon},
   title       = {dawgdad},
   url         = {https://github.com/gillespilon/dawgdad},
-  version     = {1.0.2},
-  date        = {2024-07-25}
+  version     = {1.0.3},
+  date        = {2024-07-26}
 }

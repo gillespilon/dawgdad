@@ -7,7 +7,7 @@ name = "dawgdad"
 authors = [{name = "Gilles Pilon", email = "gillespilon13@gmail.com"}]
 readme = "README.md"
 license = {file = "LICENSE"}
-version = "1.0.2"
+version = "1.0.3"
 description="Tools for machine learning, automation, statistics, graphics"
 classifiers = [
     "Programming Language :: Python :: 3",
