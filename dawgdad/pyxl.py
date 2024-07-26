@@ -13,7 +13,7 @@ from openpyxl.styles import Alignment, Border, Font, NamedStyle, PatternFill, \
 from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl.worksheet.worksheet import Worksheet
 from openpyxl.workbook.workbook import Workbook
-from dawgdad.import report_summary, html_end
+from dawgdad import report_summary, html_end
 from openpyxl.utils import get_column_letter
 from openpyxl import load_workbook
 import pandas as pd
