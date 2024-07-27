@@ -2,6 +2,7 @@
 # add these directories to sys.path here.
 import os
 import sys
+from importlib import metadata
 sys.path.insert(0, os.path.abspath('../../'))
 sys.path.insert(0, '/home/gilles/documents/repositories/virtual/venv/lib/python3.12/site-packages')
 
@@ -14,8 +15,9 @@ sys.path.insert(0, '/home/gilles/documents/repositories/virtual/venv/lib/python3
 
 project = 'dawgdad'
 copyright = '2024, Gilles Pilon'
-author = 'Gilles'
-release = '1.0.4'
+author = 'Gilles Pilon'
+version = metadata.version(project)
+release = version
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
