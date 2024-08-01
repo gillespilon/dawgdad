@@ -33,9 +33,9 @@ Full documentation is available at [https://dawgdad.readthedocs.io/en/latest/](h
 To cite this repository, please use:
 
 @software{dawgdad,
-  author      = {Gilles Pilon},
-  title       = {dawgdad},
-  url         = {https://github.com/gillespilon/dawgdad},
-  version     = {1.0.4},
-  date        = {2024-07-26}
+  author  = {Gilles Pilon},
+  title   = {dawgdad},
+  url     = {https://github.com/gillespilon/dawgdad},
+  version = {1.0.4},
+  date    = {2024-07-26}
 }
