@@ -86,7 +86,7 @@ def water_coffee_tea_milk(
     water_tea_cup_mass: int = 400,
     water_tea_mug_mass: int = 300,
     water_coffee_mass: int = 220,
-    milk_coffee_mass: int = 150,
+    milk_coffee_mass: int = 225,
     coffee_beans_mass: int = 20,
     time_1000_g_water: int = 340
 ) -> list[int]:
