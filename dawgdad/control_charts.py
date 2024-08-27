@@ -286,7 +286,8 @@ class X(ControlChart):
         ...     distribution='norm',
         ...     size=42,
         ...     loc=69,
-        ...     scale=13
+        ...     scale=13,
+        ...     random_state=42
         ... )
         >>> data = pd.DataFrame(
         ...     data=data,
@@ -295,6 +296,7 @@ class X(ControlChart):
         >>> fig = plt.figure(figsize=figsize)
         >>> x = cc.X(data=data)
         >>> ax = x.ax(fig=fig)
+        >>> plt.tight_layout()
         >>> fig.savefig(fname=graph_name)
 
         complete X control chart
@@ -306,7 +308,8 @@ class X(ControlChart):
         ...     distribution='norm',
         ...     size=42,
         ...     loc=69,
-        ...     scale=13
+        ...     scale=13,
+        ...     random_state=42
         ... )
         >>> data = pd.DataFrame(
         ...     data=data,
@@ -464,7 +467,8 @@ class mR(ControlChart):
         ...     distribution='norm',
         ...     size=42,
         ...     loc=69,
-        ...     scale=13
+        ...     scale=13,
+        ...     random_state=42
         ... )
         >>> data = pd.DataFrame(
         ...     data=data,
@@ -483,7 +487,8 @@ class mR(ControlChart):
         ...     distribution='norm',
         ...     size=42,
         ...     loc=69,
-        ...     scale=13
+        ...     scale=13,
+        ...     random_state=42
         ... )
         >>> data = pd.DataFrame(
         ...     data=data,
@@ -608,25 +613,29 @@ class Xbar(ControlChart):
         ...     distribution='norm',
         ...     size=25,
         ...     loc=69,
-        ...     scale=13
+        ...     scale=13,
+        ...     random_state=42
         ... )
         >>> X2 = dd.random_data(
         ...     distribution='norm',
         ...     size=25,
         ...     loc=69,
-        ...     scale=13
+        ...     scale=13,
+        ...     random_state=42
         ... )
         >>> X3 = dd.random_data(
         ...     distribution='norm',
         ...     size=25,
         ...     loc=69,
-        ...     scale=13
+        ...     scale=13,
+        ...     random_state=42
         ... )
         >>> X4 = dd.random_data(
         ...     distribution='norm',
         ...     size=25,
         ...     loc=69,
-        ...     scale=13
+        ...     scale=13,
+        ...     random_state=42
         ... )
         >>> data = pd.DataFrame(
         ...     data={
@@ -650,25 +659,29 @@ class Xbar(ControlChart):
         ...     distribution='norm',
         ...     size=25,
         ...     loc=69,
-        ...     scale=13
+        ...     scale=13,
+        ...     random_state=42
         ... )
         >>> X2 = dd.random_data(
         ...     distribution='norm',
         ...     size=25,
         ...     loc=69,
-        ...     scale=13
+        ...     scale=13,
+        ...     random_state=42
         ... )
         >>> X3 = dd.random_data(
         ...     distribution='norm',
         ...     size=25,
         ...     loc=69,
-        ...     scale=13
+        ...     scale=13,
+        ...     random_state=42
         ... )
         >>> X4 = dd.random_data(
         ...     distribution='norm',
         ...     size=25,
         ...     loc=69,
-        ...     scale=13
+        ...     scale=13,
+        ...     random_state=42
         ... )
         >>> data = pd.DataFrame(
         ...     data={
@@ -835,25 +848,29 @@ class R(ControlChart):
         ...     distribution='norm',
         ...     size=25,
         ...     loc=69,
-        ...     scale=13
+        ...     scale=13,
+        ...     random_state=42
         ... )
         >>> X2 = dd.random_data(
         ...     distribution='norm',
         ...     size=25,
         ...     loc=69,
-        ...     scale=13
+        ...     scale=13,
+        ...     random_state=42
         ... )
         >>> X3 = dd.random_data(
         ...     distribution='norm',
         ...     size=25,
         ...     loc=69,
-        ...     scale=13
+        ...     scale=13,
+        ...     random_state=42
         ... )
         >>> X4 = dd.random_data(
         ...     distribution='norm',
         ...     size=25,
         ...     loc=69,
-        ...     scale=13
+        ...     scale=13,
+        ...     random_state=42
         ... )
         >>> data = pd.DataFrame(
         ...     data={
@@ -878,25 +895,29 @@ class R(ControlChart):
         ...     distribution='norm',
         ...     size=25,
         ...     loc=69,
-        ...     scale=13
+        ...     scale=13,
+        ...     random_state=42
         ... )
         >>> X2 = dd.random_data(
         ...     distribution='norm',
         ...     size=25,
         ...     loc=69,
-        ...     scale=13
+        ...     scale=13,
+        ...     random_state=42
         ... )
         >>> X3 = dd.random_data(
         ...     distribution='norm',
         ...     size=25,
         ...     loc=69,
-        ...     scale=13
+        ...     scale=13,
+        ...     random_state=42
         ... )
         >>> X4 = dd.random_data(
         ...     distribution='norm',
         ...     size=25,
         ...     loc=69,
-        ...     scale=13
+        ...     scale=13,
+        ...     random_state=42
         ... )
         >>> data = pd.DataFrame(
         ...     data={
