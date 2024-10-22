@@ -719,7 +719,7 @@ def save_file(
             index_label=index_label,
             encoding=encoding,
         )
-    elif file_name.suffix in [".odd", ".ODS"]:
+    elif file_name.suffix in [".ods", ".ODS"]:
         excel_writer = pd.ExcelWriter(
             path=file_name,
             engine="odf",
@@ -786,7 +786,7 @@ def read_file(
     Create a DataFrame from an external file.
 
     - read csv | read CSV
-    - read odd.| read ODS
+    - read ods | read ODS
     - read Excel: read xlsx | read XLSX | read xlsm | read XLSM
     - read feather
 
@@ -1011,9 +1011,9 @@ def read_file(
     ...     integer_columns=integer_columns
     ... ) # doctest: +SKIP
 
-    Read an odd.file.
+    Read an ods.file.
 
-    >>> file_name = 'myfile.odd.
+    >>> file_name = 'myfile.ods.
     >>> df = dd.create_dataframe()
     >>> dd.save_file(
     ...     df=df,
@@ -1098,7 +1098,7 @@ def read_file(
             skip_blank_lines=skip_blank_lines,
             encoding=encoding,
         )
-    elif file_name.suffix in [".odd", ".ODS"]:
+    elif file_name.suffix in [".ods", ".ODS"]:
         df = pd.read_excel(
             io=file_name,
             skiprows=skiprows,
