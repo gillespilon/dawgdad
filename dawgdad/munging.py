@@ -812,9 +812,9 @@ def read_file(
         Dictionary of functions for converting values in certain columns.
     parse_dates : list[str] = False
         The columns to use to parse date and time.
-    date_format : str | dict = None
-        If used in conjunction with parse_dates, will parse dates according to
-        this format.
+    # date_format : str | dict = None
+    #   If used in conjunction with parse_dates, will parse dates according to
+    #   this format.
     datetime_format : str | None = None
         The str to use for formatting date and time.
     time_delta_columns : list[str] = []
