@@ -767,7 +767,7 @@ def read_file(
     dtype: dict | None = None,
     converters: dict | None = None,
     parse_dates: list[str | int] | dict | bool = False,
-    # date_format: str | dict = None,
+    date_format: str | dict = None,
     datetime_format: str | None = None,
     time_delta_columns: list[str] = [],
     category_columns: list[str] = [],
@@ -812,9 +812,9 @@ def read_file(
         Dictionary of functions for converting values in certain columns.
     parse_dates : list[str] = False
         The columns to use to parse date and time.
-    # date_format : str | dict = None
-    #   If used in conjunction with parse_dates, will parse dates according to
-    #   this format.
+    date_format : str | dict = None
+      If used in conjunction with parse_dates, will parse dates according to
+      this format.
     datetime_format : str | None = None
         The str to use for formatting date and time.
     time_delta_columns : list[str] = []
@@ -976,6 +976,7 @@ def read_file(
     ... }
     >>> index_columns = ['Y']
     >>> parse_dates = ['t', 'u']
+    >>> date_format = '%H:%M:%S'
     >>> time_delta_columns = ['D']
     >>> category_columns = ['C']
     >>> integer_columns = ['A', 'I']
@@ -989,7 +990,7 @@ def read_file(
     ...     column_names_dict=column_names_dict,
     ...     index_columns=index_columns,
     ...     parse_dates=parse_dates,
-    ...     # date_format=date_format,
+    ...     date_format=date_format,
     ...     time_delta_columns=time_delta_columns,
     ...     category_columns=category_columns,
     ...     integer_columns=integer_columns,
@@ -1004,7 +1005,7 @@ def read_file(
     ...     column_names_dict=column_names_dict,
     ...     index_columns=index_columns,
     ...     date_time_columns=date_time_columns,
-    ...     # date_format=date_format,
+    ...     date_format=date_format,
     ...     parse_dates=date_time_columns,
     ...     time_delta_columns=time_delta_columns,
     ...     category_columns=category_columns,
@@ -1013,7 +1014,7 @@ def read_file(
 
     Read an ods.file.
 
-    >>> file_name = 'myfile.ods.
+    >>> file_name = 'myfile.ods'
     >>> df = dd.create_dataframe()
     >>> dd.save_file(
     ...     df=df,
@@ -1076,12 +1077,6 @@ def read_file(
     ...     df=df,
     ...     file_in=file_name
     ... )
-
-    Notes
-    -----
-
-    The parameter "date_format" will be made available as soon as Arch Linux
-    updates pandas to version 2.xx.
     """
     if isinstance(type(file_name).__name__, str):
         file_name = Path(file_name)
@@ -1093,7 +1088,7 @@ def read_file(
             dtype=dtype,
             converters=converters,
             parse_dates=parse_dates,
-            # date_format=date_format,
+            date_format=date_format,
             nrows=nrows,
             skip_blank_lines=skip_blank_lines,
             encoding=encoding,
@@ -1107,7 +1102,7 @@ def read_file(
             engine="odf",
             sheet_name=sheet_name,
             parse_dates=parse_dates,
-            # date_format=date_format,
+            date_format=date_format,
         )
     elif file_name.suffix in [".xlsx", ".XLSX", ".xlsm", ".XLSM"]:
         df = pd.read_excel(
@@ -1120,7 +1115,7 @@ def read_file(
             skiprows=skiprows,
             nrows=nrows,
             parse_dates=parse_dates,
-            # date_format=date_format,
+            date_format=date_format,
         )
     # Removed xlsb XLSB support because Arch Linux does not support
     # elif file_name.suffix in ['.xlsb', '.XLSB']:
@@ -1134,7 +1129,7 @@ def read_file(
     #         skiprows=skiprows,
     #         nrows=nrows,
     #         parse_dates=parse_dates,
-    #         # date_format=date_format,
+    #         date_format=date_format,
     #     )
     elif file_name.suffix in [".feather"]:
         df = ft.read_feather(source=file_name, columns=usecols)
@@ -2948,7 +2943,7 @@ def optimize_datetime_columns(
     >>> import dawgdad as dd
     >>> df = dd.optimize_integer_columns(df=df) # doctest: +SKIP
 
-    >>> integer_columns = ["column A", "column B"]
+    >>> datetime_columns = ["column A", "column B"]
     >>> df = dd.optimize_integer_columns(
     ...     df=df,
     ...     datetime_columns=datetime_columns

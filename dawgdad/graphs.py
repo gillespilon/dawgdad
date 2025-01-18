@@ -146,6 +146,7 @@ def plot_scatter_x_y(
     markersize: float = 4,
     colour: str = colour_blue,
     remove_spines: bool = True,
+    defaultfmt: str = "%Y-%m-%d"
 ) -> tuple[plt.Figure, axes.Axes]:
     """
     Scatter plot of y versus X.  Optional smoothing applied to y.
@@ -176,6 +177,8 @@ def plot_scatter_x_y(
         The colour of the plot point (hexadecimal triplet string).
     remove_spines: bool = True
         If True, remove top and right spines of axes.
+    defaultfmt: str = "%Y-%m-%d"
+        The date string for the tick labels.
 
     Returns
     -------
@@ -225,7 +228,7 @@ def plot_scatter_x_y(
     fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
     if smoothing is None:
         if X.dtype in ["datetime64[ns]"]:
-            format_dates(fig=fig, ax=ax)
+            format_dates(fig=fig, ax=ax, defaultfmt=defaultfmt)
         ax.plot(
             X,
             y,
