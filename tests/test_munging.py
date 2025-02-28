@@ -8,7 +8,7 @@ import numpy as np
 
 
 pd.set_option('future.no_silent_downcasting', True)
-df_empty_test = pd.DataFrame(
+df = pd.DataFrame(
     data=dict(
         floats=[1.0, np.NaN, 3.0, np.NaN, 5.0, 6.0, np.NaN],
         text=["A", "B", "C", "D", "E", "F", np.NaN],
@@ -260,7 +260,7 @@ def test_delete_empty_columns():
     - are empty for all columns
     - are empty for specific columns
     """
-    result1 = dd.delete_empty_columns(df=df_empty_test)
+    result1 = dd.delete_empty_columns(df=df)
     expected1 = pd.DataFrame(
         data=dict(
             floats=[1.0, np.NaN, 3.0, np.NaN, 5.0, 6.0, np.NaN],
@@ -293,7 +293,7 @@ def test_delete_empty_columns():
     list_empty_columns = ["mixed", "nan_none"]
     # Delete columns using list_empty_columns
     result2 = dd.delete_empty_columns(
-        df=df_empty_test,
+        df=df,
         list_empty_columns=list_empty_columns
     )
     expected2 = pd.DataFrame(
@@ -339,7 +339,7 @@ def test_delete_empty_columns():
     # not all columns in list are empty
     list_empty_columns = ["mixed", "nan_none", "integers"]
     result3 = dd.delete_empty_columns(
-        df=df_empty_test,
+        df=df,
         list_empty_columns=list_empty_columns
     )
     expected3 = pd.DataFrame(
@@ -438,7 +438,7 @@ def test_delete_empty_rows():
     - all elements for a row for specific columns
     """
     # Delete columns where all elements of a column are empty
-    result = dd.delete_empty_rows(df=df_empty_test)
+    result = dd.delete_empty_rows(df=df)
     expected = pd.DataFrame(
         data=dict(
             floats=[1.0, np.NaN, 3.0, np.NaN, 5.0, 6.0],
@@ -675,3 +675,33 @@ def test_save_file():
 
 def test_sort_rows():
     pass
+
+
+def test_datetime():
+    """Tests if specific columns are of datetime64[ns] type."""
+    assert pd.api.types.is_datetime64_any_dtype(df["dates"])
+    assert pd.api.types.is_datetime64_any_dtype(df["all_nat"])
+    assert pd.api.types.is_datetime64_any_dtype(df["mixed"])
+
+
+def test_integer_types():
+    """Tests if integer-related columns are of the expected types."""
+    assert pd.api.types.is_integer_dtype(df["integers"])
+#     assert pd.api.types.is_integer_dtype(df["integers_int64"])
+#     assert pd.api.types.is_integer_dtype(df["integers_uint8"])
+#     assert pd.api.types.is_float_dtype(df["integers_float64"])
+#     assert pd.api.types.is_float_dtype(df["floats"])
+
+
+def test_float_types():
+    """Tests if float columns are of the expected types."""
+    assert pd.api.types.is_float_dtype(df["floats"])
+    # assert pd.api.types.is_float_dtype(df["floats_float64"])
+    # assert pd.api.types.is_float_dtype(df["floats_float32"])
+
+
+def test_text_types():
+    """Tests if text columns are of the expected types."""
+    assert pd.api.types.is_object_dtype(df["text"])
+    # assert pd.api.types.is_object_dtype(df["text_object"])
+    # assert pd.api.types.is_string_dtype(df["text_string"])
