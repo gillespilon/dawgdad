@@ -37,6 +37,7 @@ Why **dawgdad**?
 
    install.rst
    update.rst
+   release_notes.rst
    scripts.rst
    contributing.rst
    dawgdad.rst
