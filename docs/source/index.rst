@@ -57,7 +57,6 @@ Why **dawgdad**?
 .. toctree::
    :maxdepth: 2
 
-   release_notes/release_notes
    release_notes/version_107
 
 Indices and tables
