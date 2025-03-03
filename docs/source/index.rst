@@ -56,6 +56,7 @@ Why **dawgdad**?
 
 .. toctree::
    :maxdepth: 2
+   :hidden:
 
    release_notes/version_107
 
