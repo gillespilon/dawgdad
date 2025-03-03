@@ -26,7 +26,7 @@ from os import chdir
 import argparse
 import time
 
-from dawgdad.import control_charts as cc
+import dawgdad.control_charts as cc
 import matplotlib.pyplot as plt
 import dawgdad as dd
 import pandas as pd
