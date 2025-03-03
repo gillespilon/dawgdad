@@ -16,7 +16,8 @@ TBD
 Fixes
 -----
 
-TBD
+- Import error in scripts/xbar_r_control_charts.py
+- Import error in scripts/x_mr_control_charts.py
 
 Other
 -----
