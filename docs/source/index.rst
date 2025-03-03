@@ -54,12 +54,6 @@ Why **dawgdad**?
    piecewise_natural_cubic_spline.rst
    y1_y2_x_line_charts_separate_y_axes.rst
 
-.. toctree::
-   :maxdepth: 2
-   :hidden:
-
-   release_notes/version_107
-
 Indices and tables
 ==================
 
