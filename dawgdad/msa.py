@@ -13,6 +13,8 @@ Honest MSA reports on pandas DataFrames
 # TODO: MSA intraclass correlation coefficient with operator bias.
 # TODO: MSA intraclass correlation coefficient without operator bias.
 
+from dawgdad.control_charts import R
+import matplotlib.pyplot as plt
 import matplotlib.axes as axes
 import pandas as pd
 import numpy as np
@@ -117,7 +119,8 @@ class MSA:
         ----------
 
         df : pd.DataFrame
-            It is a dataframe with an index set and 2+ numeric columns.
+            It is a dataframe with integer columns for Operator and Part,
+            and 2+ numeric columns (integer | float).
         """
         # call def:
         # do_the_calculations()
@@ -150,9 +153,24 @@ class MSA:
 
     def range_chart(self):
         """
-        TODO
+        Generates the MSA range chart using the R class from control_charts.
+
+        The DataFrame should contain only the data columns of the repeat
+        measurements.
+
+        Keep this note until I use it for another def within MSA class.
+        If you want to calculate the range for each part measured by multiple
+        operators:
+        parts_data = self.df.groupby('Part').apply(lambda x: x.drop(['Operator', 'Part'], axis=1))
+
         """
-        raise NotImplementedError()
+        print("Inside range_chart method")
+        print("before R")
+        r_chart = R(data=self.df)
+        print("after R")
+        fig = plt.figure()
+        ax = r_chart.ax(fig=fig)
+        return fig, ax
 
     def average_chart(self):
         """
