@@ -96,7 +96,7 @@ def water_coffee_tea_milk(
 
     Parameters
     ----------
-    mugs_coffee: int = 0,
+    mugs_coffee: int = 2,
         The number of coffee mugs.
     cups_tea: int = 0,
         The number of tea cups.
