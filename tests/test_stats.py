@@ -1,3 +1,4 @@
+from pytest import approx, mark
 import warnings
 
 import dawgdad as dd
@@ -326,71 +327,67 @@ def test_timedelta_data():
     ).astype(dtype="timedelta64[s]")
     assert result.equals(other=expected)
 
-
-def test_one_sample_t():
+@mark.parametrize(
+    "hypothesized_value, alternative_hypothesis, expected",
+    [
+        (
+            400,
+            "two-sided",
+            (
+                -2.2519472501384548,
+                0.0337482297588424,
+                0.5798034164658731,
+                0.9746973097386498,
+                0.7642839483945643,
+                0.2270875306568172,
+                0.703,
+                0.1009686916604779,
+                0.7255204234760189,
+                266.91858206241807,
+                394.20141793758194,
+            ),
+        ),
+        (
+            400,
+            "less",
+            (
+                -2.2519472501384548,
+                0.0168741148794212,
+                6.257488453142133e-05,
+                0.9746973097386498,
+                0.7642839483945643,
+                0.2270875306568172,
+                0.703,
+                0.1009686916604779,
+                0.7255204234760189,
+                "N/A",
+                383.3159655856088,
+            ),
+        ),
+        (
+            400,
+            "greater",
+            (
+                -2.2519472501384548,
+                0.9831258851205789,
+                0.7063989742605766,
+                0.9746973097386498,
+                0.7642839483945643,
+                0.2270875306568172,
+                0.703,
+                0.1009686916604779,
+                0.7255204234760189,
+                277.8040344143912,
+                "N/A",
+            ),
+        ),
+    ],
+)
+def test_one_sample_t(hypothesized_value, alternative_hypothesis, expected):
     result = dd.one_sample_t(
         series=series_one_sample_t,
-        hypothesized_value=400,
-        alternative_hypothesis="two-sided",
-    )
-    # expected = (
-    # t statistic, t p value, t power,
-    # Shapiro-Wilk statistic, Shapiro-Wilk p value,
-    # Anderson-Darling statistic, Anderson-Darling critical value for
-    # alpha 0.05,
-    # Kolmogorov-Smirnov statistic, Kolmogorov-Smirnov p value,
-    # hypothesis test CI lower bound, hypothesis test CI upper bound
-    # )
-    expected = (
-        -2.2519472501384548,
-        0.0337482297588424,
-        0.5798034164658731,
-        0.9746973097386498,
-        0.7642839483945643,
-        0.2270875306568172,
-        0.703,
-        0.1009686916604779,
-        0.7255204234760189,
-        266.91858206241807,
-        394.20141793758194,
-    )
-    assert result == expected
-    result = dd.one_sample_t(
-        series=series_one_sample_t,
-        hypothesized_value=400,
-        alternative_hypothesis="less",
-    )
-    expected = (
-        -2.2519472501384548,
-        0.0168741148794212,
-        6.257488453142133e-05,
-        0.9746973097386498,
-        0.7642839483945643,
-        0.2270875306568172,
-        0.703,
-        0.1009686916604779,
-        0.7255204234760189,
-        "N/A",
-        383.3159655856088,
-    )
-    assert result == expected
-    result = dd.one_sample_t(
-        series=series_one_sample_t,
-        hypothesized_value=400,
-        alternative_hypothesis="greater",
-    )
-    expected = (
-        -2.2519472501384548,
-        0.9831258851205789,
-        0.7063989742605766,
-        0.9746973097386498,
-        0.7642839483945643,
-        0.2270875306568172,
-        0.703,
-        0.1009686916604779,
-        0.7255204234760189,
-        277.8040344143912,
-        "N/A",
+        hypothesized_value=hypothesized_value,
+        alternative_hypothesis=alternative_hypothesis,
     )
     assert result == expected
 
