@@ -79,7 +79,7 @@ def fahrenheit_to_celsius_table(
 
 def water_coffee_tea_milk(
     *,
-    mugs_coffee: int = 0,
+    mugs_coffee: int = 2,
     cups_tea: int = 0,
     mugs_tea: int = 0,
     water_coffee_filter_mass: int = 150,
