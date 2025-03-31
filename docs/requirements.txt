@@ -39,6 +39,7 @@ beautifulsoup4==4.12.3
 beautifultable==1.1.0
 bleach==6.1.0
 bottle==0.12.25
+git+https://github.com/gillespilon/bricoleur.git@main
 Brotli==1.1.0
 build==1.2.1
 CacheControl==0.14.0
@@ -106,7 +107,7 @@ googleapis-common-protos==1.63.0
 greenlet==3.1.1
 gspread==6.1.0
 h11==0.14.0
-h5py==3.11.0
+h5py==3.13.0
 hatchling==1.24.2
 html2text==2024.2.26
 html5-parser==0.4.12
@@ -212,7 +213,7 @@ onnx==1.17.0
 onnx_graphsurgeon==0.5.7
 openpyxl==3.1.5
 opt-einsum==3.3.0
-optree==0.11.0
+optree==0.13.0
 ordered-set==4.1.0
 overrides==7.7.0
 packaging==24.0
@@ -283,7 +284,7 @@ PyQt6-WebEngine==6.8.0
 PyRect==0.2.0
 pyrsistent==0.19.3
 swig==4.2.1
-PySCIPOpt==5.1.1
+PySCIPOpt==5.4.1
 PyScreeze==0.1.30
 pyserial==3.5
 pytest==8.2.0
@@ -396,3 +397,4 @@ zipfile-deflate64==0.2.0
 zipp==3.21.0
 zope.interface==6.3
 zstandard==0.23.0
+
