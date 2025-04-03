@@ -327,6 +327,7 @@ def test_timedelta_data():
     ).astype(dtype="timedelta64[s]")
     assert result.equals(other=expected)
 
+
 @mark.parametrize(
     "hypothesized_value, alternative_hypothesis, expected",
     [
@@ -392,13 +393,82 @@ def test_one_sample_t(hypothesized_value, alternative_hypothesis, expected):
     assert result == expected
 
 
-def test_two_sample_t():
+@mark.parametrize(
+    "alternative_hypothesis, significance_level, expected",
+    [
+        (
+            "two-sided",
+            0.05,
+            (
+                2.1353336482435243,
+                0.0467302735601054,
+                0.5243039932709265,
+                0.9785249763729523,
+                0.9574032744427222,
+                0.8853149752492473,
+                0.17846557720076883,
+                3.2744574205759416,
+                0.07036619072494953,
+                0.15265397324961683,
+                0.68,
+                0.49940696863048295,
+                0.693,
+                0.06234516845619442,
+                7.67502856891755,
+            ),
+        ),
+        (
+            "less",
+            0.05,
+            (
+                2.1353336482435243,
+                0.9766348632199473,
+                0.00010611922933968093,
+                0.9785249763729523,
+                0.9574032744427222,
+                0.8853149752492473,
+                0.17846557720076883,
+                3.2744574205759416,
+                0.07036619072494953,
+                0.15265397324961683,
+                0.68,
+                0.49940696863048295,
+                0.693,
+                0.06234516845619442,
+                7.67502856891755,
+            ),
+        ),
+        (
+            "greater",
+            0.05,
+            (
+                2.1353336482435243,
+                0.0233651367800527,
+                0.6587984489683615,
+                0.9785249763729523,
+                0.9574032744427222,
+                0.8853149752492473,
+                0.17846557720076883,
+                3.2744574205759416,
+                0.07036619072494953,
+                0.15265397324961683,
+                0.68,
+                0.49940696863048295,
+                0.693,
+                0.06234516845619442,
+                7.67502856891755,
+            ),
+        ),
+    ],
+)
+def test_two_sample_t(alternative_hypothesis, significance_level, expected):
     result = dd.two_sample_t(
         series1=series1_two_sample_t,
         series2=series2_two_sample_t,
-        alternative_hypothesis="two-sided",
-        significance_level=0.05,
+        alternative_hypothesis=alternative_hypothesis,
+        significance_level=significance_level,
     )
+    assert result == expected
     # expected = (
     # t statistic, t p value, t power,
     # Shapiro-Wilk statistic sample 1, Shapiro-Wilk p value sample 1,
@@ -406,72 +476,6 @@ def test_two_sample_t():
     # Bartlett test statistic, Bartlett p value,
     # Anderson-Darling test statistic, Anderson-Darling p value`
     # )
-    expected = (
-        2.1353336482435243,
-        0.0467302735601054,
-        0.5243039932709265,
-        0.9785249763729523,
-        0.9574032744427222,
-        0.8853149752492473,
-        0.17846557720076883,
-        3.2744574205759416,
-        0.07036619072494953,
-        0.15265397324961683,
-        0.68,
-        0.49940696863048295,
-        0.693,
-        0.06234516845619442,
-        7.67502856891755,
-    )
-    assert result == expected
-    result = dd.two_sample_t(
-        series1=series1_two_sample_t,
-        series2=series2_two_sample_t,
-        alternative_hypothesis="less",
-        significance_level=0.05,
-    )
-    expected = (
-        2.1353336482435243,
-        0.9766348632199473,
-        0.00010611922933968093,
-        0.9785249763729523,
-        0.9574032744427222,
-        0.8853149752492473,
-        0.17846557720076883,
-        3.2744574205759416,
-        0.07036619072494953,
-        0.15265397324961683,
-        0.68,
-        0.49940696863048295,
-        0.693,
-        0.06234516845619442,
-        7.67502856891755,
-    )
-    assert result == expected
-    result = dd.two_sample_t(
-        series1=series1_two_sample_t,
-        series2=series2_two_sample_t,
-        alternative_hypothesis="greater",
-        significance_level=0.05,
-    )
-    expected = (
-        2.1353336482435243,
-        0.0233651367800527,
-        0.6587984489683615,
-        0.9785249763729523,
-        0.9574032744427222,
-        0.8853149752492473,
-        0.17846557720076883,
-        3.2744574205759416,
-        0.07036619072494953,
-        0.15265397324961683,
-        0.68,
-        0.49940696863048295,
-        0.693,
-        0.06234516845619442,
-        7.67502856891755,
-    )
-    assert result == expected
 
 
 def test_paired_t():
