@@ -159,7 +159,7 @@ def test_nonparametric_summary():
     Test for method 8
     """
     result = dd.nonparametric_summary(
-        series=X, alphap=1 / 3, betap=1 / 3, decimals=3
+        series=X, alphap=1/3, betap=1/3, decimals=3
     )
     expected = pd.Series(
         data={
@@ -198,41 +198,49 @@ def test_parametric_summary():
     assert result.equals(other=expected)
 
 
-def test_cubic_spline():
+@mark.parametrize(
+    "df, expected",
+    [
+        (
+            df_integer_float,
+            (
+                0.0,
+                0.841470984807896,
+                0.909297426825682,
+                0.141120008059867,
+                -0.756802495307928,
+                -0.958924274663138,
+                -0.279415498198926,
+                0.656986598718789,
+                0.989358246623382,
+                0.41211848524175704,
+            ),
+        ),
+        (
+            df_datetime_float,
+            (
+                0.0,
+                0.841470984807896,
+                0.909297426825682,
+                0.141120008059867,
+                -0.756802495307928,
+                -0.958924274663138,
+                -0.279415498198926,
+                0.656986598718789,
+                0.989358246623382,
+                0.41211848524175704,
+            ),
+        ),
+    ],
+)
+def test_cubic_spline(df, expected):
     cubic_spline = dd.cubic_spline(
-        df=df_integer_float, abscissa="abscissa", ordinate="ordinate"
+        df=df,
+        abscissa="abscissa",
+        ordinate="ordinate"
     )
-    result = cubic_spline(x=df_integer_float["abscissa"])
-    expected = [
-        0.0,
-        0.841470984807896,
-        0.909297426825682,
-        0.141120008059867,
-        -0.756802495307928,
-        -0.958924274663138,
-        -0.279415498198926,
-        0.656986598718789,
-        0.989358246623382,
-        0.41211848524175704,
-    ]
-    assert (result == expected).all()
-    cubic_spline = dd.cubic_spline(
-        df=df_datetime_float, abscissa="abscissa", ordinate="ordinate"
-    )
-    result = cubic_spline(x=df_datetime_float["abscissa"])
-    expected = [
-        0.0,
-        0.841470984807896,
-        0.909297426825682,
-        0.141120008059867,
-        -0.756802495307928,
-        -0.958924274663138,
-        -0.279415498198926,
-        0.656986598718789,
-        0.989358246623382,
-        0.41211848524175704,
-    ]
-    assert (result == expected).all()
+    result = tuple(cubic_spline(x=df["abscissa"]))
+    assert result == expected
 
 
 def test_natural_cubic_spline():
