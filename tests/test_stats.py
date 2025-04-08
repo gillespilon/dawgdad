@@ -292,25 +292,54 @@ def test_natural_cubic_spline(df, n_knots, random_seed, expected_predictions):
     assert np.allclose(result, expected, atol=1e-5)
 
 
-def test_random_data():
-    result = dd.random_data(size=13, random_state=41)
-    expected = pd.Series(
-        data=[
-            -0.2707123230673205,
-            0.10484805260974006,
-            0.25052781572357197,
-            -0.9251999652780767,
-            0.567143660285906,
-            -1.040180216082938,
-            -0.15367595145793744,
-            0.7898518103468191,
-            -1.2262158464418542,
-            -0.9480069877134585,
-            -0.5696539419300647,
-            -0.9771502146977724,
-            -0.7706317111835508,
-        ]
-    )
+@mark.parametrize(
+    "size, random_state, expected_data",
+    [
+        (
+            13,
+            41,
+            [
+                -0.2707123230673205,
+                0.10484805260974006,
+                0.25052781572357197,
+                -0.9251999652780767,
+                0.567143660285906,
+                -1.040180216082938,
+                -0.15367595145793744,
+                0.7898518103468191,
+                -1.2262158464418542,
+                -0.9480069877134585,
+                -0.5696539419300647,
+                -0.9771502146977724,
+                -0.7706317111835508,
+            ],
+        ),
+        (
+            5,
+            100,
+            [
+                -1.7497654730546974,
+                0.34268040332750216,
+                1.153035802563644,
+                -0.25243603652138985,
+                0.9813207869512316
+            ]
+        ),
+        # Add more test cases here by varying size and random_state
+        # and providing the corresponding expected data.
+        # >>> import dawgdad as dd
+        # >>> import pandas as pd
+        # >>> import numpy as np
+        # >>>
+        # >>> size = 5
+        # >>> random_state = 100
+        # >>> generated_data = dd.random_data(size=size, random_state=random_state)
+        # >>> print(generated_data.tolist())
+    ],
+)
+def test_random_data(size, random_state, expected_data):
+    result = dd.random_data(size=size, random_state=random_state)
+    expected = pd.Series(data=expected_data)
     assert result.equals(other=expected)
 
 
