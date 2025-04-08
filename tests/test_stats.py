@@ -243,35 +243,52 @@ def test_cubic_spline(df, expected):
     assert result == expected
 
 
-def test_natural_cubic_spline():
+@mark.parametrize(
+    "df, n_knots, random_seed, expected_predictions",
+    [
+        (
+            df_linear_regression,
+            10,
+            41,
+            np.array(
+                [
+                    -8.449636,
+                    -7.369397,
+                    -6.950373,
+                    -10.332163,
+                    -6.039679,
+                    -10.662885,
+                    -8.113000,
+                    -5.399096,
+                    -11.197986,
+                    -10.397764,
+                    -9.309493,
+                    -10.481590,
+                    -9.887573,
+                ]
+            ),
+        ),
+        # You can add more test cases here with different data,
+        # number of knots, random seeds, and expected predictions.
+        # For example:
+        # (
+        #     pd.DataFrame({"X": [1, 2, 3], "y": [2, 4, 6]}),
+        #     2,
+        #     42,
+        #     np.array([1.9999999, 4.0000000, 6.0000000]) # Example expected values
+        # ),
+    ],
+)
+def test_natural_cubic_spline(df, n_knots, random_seed, expected_predictions):
     pipeline_fit = dd.natural_cubic_spline(
-        X=df_linear_regression["X"],
-        y=df_linear_regression["y"],
-        number_knots=10
+        X=df["X"],
+        y=df["y"],
+        number_knots=n_knots
     )
-    X = dd.random_data(size=13, random_state=41).values
+    X = dd.random_data(size=len(expected_predictions), random_state=random_seed).values
     predictions = pipeline_fit.predict(X=X)
     result = pd.Series(data=predictions)
-    exp = np.array(
-        object=[
-            -8.449636,
-            -7.369397,
-            -6.950373,
-            -10.332163,
-            -6.039679,
-            -10.662885,
-            -8.113000,
-            -5.399096,
-            -11.197986,
-            -10.397764,
-            -9.309493,
-            -10.481590,
-            -9.887573,
-        ]
-    )
-    expected = pd.Series(data=exp)
-    # Cubic spline interpolation can introduce slight numerical errors due to
-    # floating-point calculations. Add a tolerance 'atol'.
+    expected = pd.Series(data=expected_predictions)
     assert np.allclose(result, expected, atol=1e-5)
 
 
