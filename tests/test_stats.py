@@ -343,34 +343,113 @@ def test_random_data(size, random_state, expected_data):
     assert result.equals(other=expected)
 
 
-def test_datetime_data():
+# def test_datetime_data():
+#     result = dd.datetime_data(
+#         start_year="2020",
+#         start_month="01",
+#         start_day="01",
+#         start_hour="00",
+#         start_minute="00",
+#         start_second="00",
+#         end_year="2020",
+#         end_month="01",
+#         end_day="01",
+#         end_hour="07",
+#         end_minute="00",
+#         end_second="00",
+#         time_delta_days=7,
+#         time_delta_hours=1,
+#     )
+#     expected = pd.Series(
+#         data=[
+#             "2020-01-01 00:00:00",
+#             "2020-01-01 01:00:00",
+#             "2020-01-01 02:00:00",
+#             "2020-01-01 04:00:00",
+#             "2020-01-01 03:00:00",
+#             "2020-01-01 05:00:00",
+#             "2020-01-01 06:00:00",
+#         ]
+#     ).astype(dtype="datetime64[s]")
+#     assert result.equals(other=expected)
+
+
+@mark.parametrize(
+    "start_year, start_month, start_day, start_hour, start_minute, "
+    " start_second, end_year, end_month, end_day, end_hour, end_minute, "
+    "end_second, time_delta_days, time_delta_hours, expected_data",
+    [
+        (
+            "2020", "01", "01", "00", "00", "00",
+            "2020", "01", "01", "07", "00", "00",
+            7, 1,
+            [
+                "2020-01-01 00:00:00",
+                "2020-01-01 01:00:00",
+                "2020-01-01 02:00:00",
+                "2020-01-01 03:00:00",
+                "2020-01-01 04:00:00",
+                "2020-01-01 05:00:00",
+                "2020-01-01 06:00:00",
+            ],
+        ),
+        (
+            "2023", "12", "25", "10", "00", "00",
+            "2023", "12", "25", "13", "00", "00",
+            0, 1,
+            [
+                "2023-12-25 10:00:00",
+                "2023-12-25 11:00:00",
+                "2023-12-25 12:00:00",
+            ],
+        ),
+        (
+            "2024", "03", "01", "00", "00", "00",
+            "2024", "03", "08", "00", "00", "00",
+            1, 12,
+            [
+                "2024-03-01 00:00:00",
+                "2024-03-01 12:00:00",
+                "2024-03-02 00:00:00",
+                "2024-03-02 12:00:00",
+                "2024-03-03 00:00:00",
+                "2024-03-03 12:00:00",
+                "2024-03-04 00:00:00",
+                "2024-03-04 12:00:00",
+                "2024-03-05 00:00:00",
+                "2024-03-05 12:00:00",
+                "2024-03-06 00:00:00",
+                "2024-03-06 12:00:00",
+                "2024-03-07 00:00:00",
+                "2024-03-07 12:00:00",
+            ],
+        ),
+        # Add more future datasets here by defining different start and end times
+        # and time deltas.
+    ],
+)
+def test_datetime_data(
+    start_year, start_month, start_day, start_hour, start_minute, start_second,
+    end_year, end_month, end_day, end_hour, end_minute, end_second,
+    time_delta_days, time_delta_hours, expected_data
+):
     result = dd.datetime_data(
-        start_year="2020",
-        start_month="01",
-        start_day="01",
-        start_hour="00",
-        start_minute="00",
-        start_second="00",
-        end_year="2020",
-        end_month="01",
-        end_day="01",
-        end_hour="07",
-        end_minute="00",
-        end_second="00",
-        time_delta_days=7,
-        time_delta_hours=1,
+        start_year=start_year,
+        start_month=start_month,
+        start_day=start_day,
+        start_hour=start_hour,
+        start_minute=start_minute,
+        start_second=start_second,
+        end_year=end_year,
+        end_month=end_month,
+        end_day=end_day,
+        end_hour=end_hour,
+        end_minute=end_minute,
+        end_second=end_second,
+        time_delta_days=time_delta_days,
+        time_delta_hours=time_delta_hours,
     )
-    expected = pd.Series(
-        data=[
-            "2020-01-01 00:00:00",
-            "2020-01-01 01:00:00",
-            "2020-01-01 02:00:00",
-            "2020-01-01 03:00:00",
-            "2020-01-01 04:00:00",
-            "2020-01-01 05:00:00",
-            "2020-01-01 06:00:00",
-        ]
-    ).astype(dtype="datetime64[s]")
+    expected = pd.Series(data=expected_data).astype(dtype="datetime64[s]")
     assert result.equals(other=expected)
 
 
