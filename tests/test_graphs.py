@@ -1,4 +1,7 @@
+from pytest import approx, mark, raises
+from shapely.geometry import Point
 import dawgdad as dd
+import pandas as pd
 
 
 def test_plot_scatterleft_scatterright_x_y1_y2():
@@ -55,6 +58,34 @@ def test_probability_plot():
 
 def test_plot_scatter_x_y():
     pass
+
+
+@mark.parametrize(
+    "input_data, expected_point",
+    [
+        (pd.Series({"longitude": -87.6298, "latitude": 41.8781}), Point(-87.6298, 41.8781)),
+        (pd.Series({"longitude": 10.0, "latitude": 20.5}), Point(10.0, 20.5)),
+        (pd.Series({"longitude": -75, "latitude": 30}), Point(-75.0, 30.0)),
+        (pd.Series({"longitude": 180.0, "latitude": 0.0}), Point(180.0, 0.0)),
+        (pd.Series({"longitude": -180.0, "latitude": 0.0}), Point(-180.0, 0.0)),
+        (pd.Series({"longitude": 0.0, "latitude": 90.0}), Point(0.0, 90.0)),
+        (pd.Series({"longitude": 0.0, "latitude": -90.0}), Point(0.0, -90.0)),
+    ],
+)
+def test_convert_lon_lat_parametrized(input_data: pd.Series, expected_point: Point):
+    """
+    Tests the convert_lon_lat function with various inputs using parametrization.
+    """
+    actual_point = dd.convert_lon_lat(input_data)
+    assert actual_point == expected_point
+    assert isinstance(actual_point, Point)
+
+def test_convert_lon_lat_missing_keys():
+    """
+    Tests that convert_lon_lat raises a KeyError when required keys are missing.
+    """
+    with raises(KeyError):
+        dd.convert_lon_lat(pd.Series({"lon": 1.0, "lat": 2.0}))
 
 
 def test_plot_histogram():
