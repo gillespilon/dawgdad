@@ -65,7 +65,7 @@ css-parser==1.0.10
 cssselect==1.2.0
 cycler==0.12.1
 Cython==3.0.10
-dawgdad==1.0.5
+dawgdad==1.0.6
 decorator==5.1.1
 defusedxml==0.7.1
 deprecation==2.1.0
