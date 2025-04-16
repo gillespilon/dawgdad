@@ -122,8 +122,7 @@ class MSA:
             It is a dataframe with integer columns for Operator and Part,
             and 2+ numeric columns (integer | float).
         """
-        # call def:
-        # do_the_calculations()
+        self.df = df
 
     def _subcalc0(self):
         pass
@@ -151,26 +150,58 @@ class MSA:
 
     # Charts
 
-    def range_chart(self):
+    def range_chart(self, operator_col="Operator", part_col="Part"):
         """
-        Generates the MSA range chart using the R class from control_charts.
+        Generates an MSA range chart with combined Operator/Part x-axis labels.
+        Optionally breaks or colours the lines by Operator.
 
-        The DataFrame should contain only the data columns of the repeat
-        measurements.
-
-        Keep this note until I use it for another def within MSA class.
-        If you want to calculate the range for each part measured by multiple
-        operators:
-        parts_data = self.df.groupby('Part').apply(lambda x: x.drop(['Operator', 'Part'], axis=1))
-
+        Returns
+        -------
+        axes: Axes
+            A matplotlib Axes.
         """
         print("Inside range_chart method")
         print("before R")
-        r_chart = R(data=self.df)
+
+        numeric_data = self.df.select_dtypes(include=np.number)
+        operator_values = self.df[operator_col]
+        part_values = self.df[part_col]
+
+        # Combine Operator and Part for x-axis labels
+        x_labels = [f"{op}\n{part}" for op, part in zip(operator_values, part_values)]
+
+        # Calculate the range for each row (Y1 and Y2)
+        ranges = numeric_data.max(axis=1) - numeric_data.min(axis=1)
+
+        # Calculate the overall mean range
+        mean_range = ranges.mean()
+
+        # Calculate control limits (using constants for n=2, as we have 2 measurements per row)
+        d2 = 1.128  # Constant for n=2
+        d3 = 0.8525  # Constant for n=2
+        ucl = mean_range + 3 * (d3 / d2) * mean_range
+        lcl = max(0, mean_range - 3 * (d3 / d2) * mean_range)  # Ensure lcl >= 0
+
+        fig, ax = plt.subplots(figsize=(10, 6))
+        _despine(ax)
+
+        # Plot the range values
+        ax.plot(ranges.index, ranges, marker='o', markersize=3, color='#33bbee')
+
+        # Plot control limits
+        ax.axhline(y=mean_range, color='#009988', linestyle='-')
+        ax.axhline(y=ucl, color='#0077bb', linestyle='--')
+        ax.axhline(y=lcl, color='#0077bb', linestyle='--')
+
+        # Set x-axis labels
+        ax.set_xticks(range(len(numeric_data.index)))
+        ax.set_xticklabels(x_labels)
+        ax.set_xlabel("Operator / Part")
+        ax.set_ylabel("Range")
+
         print("after R")
-        fig = plt.figure()
-        ax = r_chart.ax(fig=fig)
-        return fig, ax
+
+        return ax
 
     def average_chart(self):
         """
