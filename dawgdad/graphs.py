@@ -3285,7 +3285,7 @@ __all__ = (
     "plot_stacked_bars",
     "probability_plot",
     "plot_scatter_x_y",
-    "convert_lon_lan",
+    "convert_lon_lat",
     "plot_histogram",
     "plot_scatter_y",
     "empirical_cdf",
