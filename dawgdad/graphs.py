@@ -20,6 +20,7 @@ from dawgdad import natural_cubic_spline, html_dd
 from matplotlib.ticker import StrMethodFormatter
 from matplotlib.offsetbox import AnchoredText
 from matplotlib import rcParams as rc
+from shapely.geometry import Point
 import matplotlib.dates as mdates
 import matplotlib.artist as mpla
 import matplotlib.pyplot as plt
@@ -255,6 +256,27 @@ def plot_scatter_x_y(
     if remove_spines:
         despine(ax=ax)
     return (fig, ax)
+
+
+def convert_lon_lat(row: pd.Series) -> Point:
+    """
+    Convert longitude and latitude to geopandas geometry.
+    Put longitude before latitude.
+
+    Parameters
+    ----------
+    row: pd.Series
+        A single row of data.
+
+    Returns
+    -------
+    point: Point
+        A geometry type that represents a single coordinate with x and y
+        values. A point is a zero-dimensional feature and has zero length and
+        zero area.
+    """
+    point = Point(row["longitude"], row["latitude"])
+    return point
 
 
 def plot_line_y(
@@ -3263,6 +3285,7 @@ __all__ = (
     "plot_stacked_bars",
     "probability_plot",
     "plot_scatter_x_y",
+    "convert_lon_lan",
     "plot_histogram",
     "plot_scatter_y",
     "empirical_cdf",
