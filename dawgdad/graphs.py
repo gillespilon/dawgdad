@@ -25,6 +25,7 @@ import matplotlib.dates as mdates
 import matplotlib.artist as mpla
 import matplotlib.pyplot as plt
 import matplotlib.axes as axes
+import geopandas as gpd
 import pyqrcode as pq
 import pandas as pd
 import numpy as np
@@ -3270,6 +3271,86 @@ def plot_boxcox(
     return (fig, ax)
 
 
+def geomap(
+    *,
+    map_file: gpd.GeoDataFrame = None,
+    locations_file: gpd.GeoDataFrame = None,
+    map_colour: str = None,
+    edge_colour: str = None,
+    line_width: float = None,
+    marker_type: str = None,
+    marker_size: float = None,
+    point_colour: str = None,
+    text_colour: str = None,
+    alpha: float = None,
+    code: str = None,
+    figsize: tuple[float, float] = None,
+    ax: axes.Axes = None,  # Add the ax parameter here
+) -> axes.Axes:
+    """
+    Plot a geomap with labeled points.
+
+    Parameters
+    ----------
+    mapfile: gpd.GeoDataFrame = None
+        The map file on which points will be plotted.
+    locations_file: gpd.GeoDataFrame = None
+        The file of locations.
+    map_colour: str = None
+        The background colour of the map.
+    edge_colour: str = None
+        The colour that separates the map areas.
+    line_width: float = None,
+    marker_type: str = None,
+    marker_size: float = None,
+    point_colour: str = None,
+    text_colour: str = None,
+    alpha: float = None,
+    code: str = None,
+    figsize: tuple[float, float] = None,
+    ax: axes.Axes = None,  # The axes to plot on
+
+    Returns
+    -------
+    ax: axes.Axes
+        A matplotlib Axes.
+    """
+    if ax is None:
+        fig = plt.figure(figsize=figsize)
+        ax = fig.add_subplot(111)
+        ax.set_aspect(aspect="equal")
+    if map_file is not None:
+        map_file.plot(
+            color=map_colour,
+            edgecolor=edge_colour,
+            linewidth=line_width,
+            alpha=alpha,
+            ax=ax,
+        ).axis("off")
+    if locations_file is not None:
+        if point_colour is not None:
+            locations_file.plot(
+                color=point_colour, marker=marker_type, markersize=marker_size, ax=ax
+            ).axis("off")
+        else:
+            locations_file.plot(marker=marker_type, markersize=marker_size, ax=ax).axis(
+                "off"
+            )
+        if code is not None:
+            for x, y, label in zip(
+                locations_file["geometry"].x, locations_file["geometry"].y, code
+            ):
+                ax.annotate(
+                    label,
+                    xy=(x, y),
+                    xytext=(6, -1.5),
+                    textcoords="offset points",
+                    color=text_colour,
+                    fontsize=6,
+                )
+    return ax
+
+
 __all__ = (
     "plot_scatterleft_scatterright_x_y1_y2",
     "plot_scatter_scatter_x1_x2_y1_y2",
@@ -3302,4 +3383,5 @@ __all__ = (
     "plot_pie",
     "despine",
     "qr_code",
+    "geomap",
 )
