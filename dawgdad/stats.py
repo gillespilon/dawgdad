@@ -438,7 +438,7 @@ def random_data(
     random_state : int = None
         The random number seed.
     fraction_nan : float = 0.13
-        The fraction of cells to be made np.NaN.
+        The fraction of cells to be made np.nan.
     name : str = None
         The name of the Series.
 
@@ -663,7 +663,7 @@ def random_data(
                     ),
                     name=name
                 )
-                series[series.sample(frac=fraction_nan).index] = np.NaN
+                series[series.sample(frac=fraction_nan).index] = np.nan
                 series = series.astype(dtype="Int64")
             elif distribution == "randint":
                 series = pd.Series(eval(distribution).rvs(
@@ -684,7 +684,7 @@ def random_data(
     #             ),
     #             name=name
     #         )
-    #         series[series.sample(frac=fraction_nan).index] = np.NaN
+    #         series[series.sample(frac=fraction_nan).index] = np.nan
     #         series = series.astype(dtype="Int64")
     #     elif distribution == "randint":
     #         series = pd.Series(eval(distribution).rvs(
@@ -705,7 +705,7 @@ def random_data(
                     ),
                     name=name
                 )
-                series[series.sample(frac=fraction_nan).index] = np.NaN
+                series[series.sample(frac=fraction_nan).index] = np.nan
                 series = series.astype(dtype="boolean")
             elif distribution == "bool":
                 series = pd.Series(eval("randint").rvs(
@@ -726,7 +726,7 @@ def random_data(
     #             ),
     #             name=name
     #         )
-    #         series[series.sample(frac=fraction_nan).index] = np.NaN
+    #         series[series.sample(frac=fraction_nan).index] = np.nan
     #         series = series.astype(dtype="boolean")
     #     elif distribution == "bool":
     #         series = pd.Series(eval("randint").rvs(
