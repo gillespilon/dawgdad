@@ -25,7 +25,7 @@ import matplotlib.dates as mdates
 import matplotlib.artist as mpla
 import matplotlib.pyplot as plt
 import matplotlib.axes as axes
-import geopandas as gpd
+import geopandas as gp
 import pyqrcode as pq
 import pandas as pd
 import numpy as np
@@ -60,7 +60,7 @@ def plot_scatter_y(
 
     The abscissa is a series of integers 1 to the size of y.
 
-    If smoothing is applied, the series must not contain NaN, inf, or -inf.
+    If smoothing is applied, the series must not contain nan, inf, or -inf.
     Fit a piecewise cubic function the the constraint that the fitted curve is
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
@@ -153,7 +153,7 @@ def plot_scatter_x_y(
     """
     Scatter plot of y versus X.  Optional smoothing applied to y.
 
-    If smoothing is applied, the series must not contain NaN, inf, or -inf.
+    If smoothing is applied, the series must not contain nan, inf, or -inf.
     Fit a piecewise cubic function the the constraint that the fitted curve is
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
@@ -297,7 +297,7 @@ def plot_line_y(
 
     The abscissa is a series of integers 1 to the size of y.
 
-    If smoothing is applied, the series must not contain NaN, inf, or -inf.
+    If smoothing is applied, the series must not contain nan, inf, or -inf.
     Fit a piecewise cubic function the the constraint that the fitted curve is
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
@@ -392,7 +392,7 @@ def plot_line_x_y(
     """
     Scatter plot of y versus X. Optional smoothing applied to y.
 
-    If smoothing is applied, the series must not contain NaN, inf, or -inf.
+    If smoothing is applied, the series must not contain nan, inf, or -inf.
     Fit a piecewise cubic function the the constraint that the fitted curve is
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
@@ -538,7 +538,7 @@ def plot_scatter_scatter_x_y1_y2(
 
     This graph is useful if y1 and y2 have the same units.
 
-    If smoothing is applied, the series must not contain NaN, inf, or -inf.
+    If smoothing is applied, the series must not contain nan, inf, or -inf.
     Fit a piecewise cubic function the the constraint that the fitted curve is
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
@@ -712,7 +712,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
 
     This graph is useful if y1 and y2 have the same units.
 
-    If smoothing is applied, the series must not contain NaN, inf, or -inf.
+    If smoothing is applied, the series must not contain nan, inf, or -inf.
     Fit a piecewise cubic function the the constraint that the fitted curve is
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
@@ -935,7 +935,7 @@ def plot_scatter_line_x_y1_y2(
 
     This graph is useful if y1 and y2 have the same units.
 
-    If smoothing is applied, the series must not contain NaN, inf, or -inf.
+    If smoothing is applied, the series must not contain nan, inf, or -inf.
     Fit a piecewise cubic function the the constraint that the fitted curve is
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
@@ -1074,7 +1074,7 @@ def plot_line_line_y1_y2(
     y1 and y2 are of the same length.
     y1 and y2 have the same units.
 
-    If smoothing is applied, the series must not contain NaN, inf, or -inf.
+    If smoothing is applied, the series must not contain nan, inf, or -inf.
     Fit a piecewise cubic function the the constraint that the fitted curve is
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
@@ -1206,7 +1206,7 @@ def plot_line_line_x_y1_y2(
 
     This graph is useful if y1 and y2 have the same units.
 
-    If smoothing is applied, the series must not contain NaN, inf, or -inf.
+    If smoothing is applied, the series must not contain nan, inf, or -inf.
     Fit a piecewise cubic function the the constraint that the fitted curve is
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
@@ -1345,7 +1345,7 @@ def plot_line_line_line_x_y1_y2_y3(
 
     This graph is useful if y1, y2, and y3 have the same units.
 
-    If smoothing is applied, the series must not contain NaN, inf, or -inf.
+    If smoothing is applied, the series must not contain nan, inf, or -inf.
     Fit a piecewise cubic function the the constraint that the fitted curve is
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
@@ -1503,7 +1503,7 @@ def plot_scatterleft_scatterright_x_y1_y2(
     This graph is useful if y1 and y2 have different units or scales,
     and you wish to see if they are correlated.
 
-    If smoothing is applied, the series must not contain NaN, inf, or -inf.
+    If smoothing is applied, the series must not contain nan, inf, or -inf.
     Fit a piecewise cubic function the the constraint that the fitted curve is
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
@@ -1622,7 +1622,7 @@ def plot_lineleft_lineright_x_y1_y2(
     This graph is useful if y1 and y2 have different units or scales,
     and you wish to see if they are correlated.
 
-    If smoothing is applied, the series must not contain NaN, inf, or -inf.
+    If smoothing is applied, the series must not contain nan, inf, or -inf.
     Fit a piecewise cubic function the the constraint that the fitted curve is
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
@@ -1770,7 +1770,7 @@ def plot_barleft_lineright_x_y1_y2(
     This graph is useful if y1 and y2 have different units or scales,
     and you wish to see if they are correlated.
 
-    If smoothing is applied, the series must not contain NaN, inf, or -inf.
+    If smoothing is applied, the series must not contain nan, inf, or -inf.
     Fit a piecewise cubic function the the constraint that the fitted curve is
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
@@ -3273,8 +3273,8 @@ def plot_boxcox(
 
 def geomap(
     *,
-    map_file: gpd.GeoDataFrame = None,
-    locations_file: gpd.GeoDataFrame = None,
+    map_file: gp.GeoDataFrame = None,
+    locations_file: gp.GeoDataFrame = None,
     map_colour: str = None,
     edge_colour: str = None,
     line_width: float = None,
@@ -3292,9 +3292,9 @@ def geomap(
 
     Parameters
     ----------
-    mapfile: gpd.GeoDataFrame = None
+    mapfile: gp.GeoDataFrame = None
         The map file on which points will be plotted.
-    locations_file: gpd.GeoDataFrame = None
+    locations_file: gp.GeoDataFrame = None
         The file of locations.
     map_colour: str = None
         The background colour of the map.
