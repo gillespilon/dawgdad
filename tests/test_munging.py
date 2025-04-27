@@ -10,30 +10,30 @@ import numpy as np
 pd.set_option('future.no_silent_downcasting', True)
 df = pd.DataFrame(
     data=dict(
-        floats=[1.0, np.NaN, 3.0, np.NaN, 5.0, 6.0, np.NaN],
-        text=["A", "B", "C", "D", "E", "F", np.NaN],
+        floats=[1.0, np.nan, 3.0, np.nan, 5.0, 6.0, np.nan],
+        text=["A", "B", "C", "D", "E", "F", np.nan],
         dates=[
             "1956-06-08", "1956-06-08",
             "1956-06-08", "1956-06-08",
             "1956-06-08", "1956-06-08",
             pd.NaT
         ],
-        all_nan=[np.NaN, np.NaN, np.NaN, np.NaN, np.NaN, np.NaN, np.NaN],
+        all_nan=[np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan],
         all_nat=[pd.NaT, pd.NaT, pd.NaT, pd.NaT, pd.NaT, pd.NaT, pd.NaT],
         all_none=[None, None, None, None, None, None, None],
         all_space=["", " ", "", " ", "", "", ""],
-        nan_space=[np.NaN, "", " ", np.NaN, np.NaN, np.NaN, np.NaN],
-        nan_none=[np.NaN, None, np.NaN, np.NaN, None, np.NaN, None],
-        mixed=[None, np.NaN, pd.NaT, pd.NaT, None, np.NaN, pd.NaT],
-        integers=[1, 2, np.NaN, 4, 5, 6, np.NaN],
+        nan_space=[np.nan, "", " ", np.nan, np.nan, np.nan, np.nan],
+        nan_none=[np.nan, None, np.nan, np.nan, None, np.nan, None],
+        mixed=[None, np.nan, pd.NaT, pd.NaT, None, np.nan, pd.NaT],
+        integers=[1, 2, np.nan, 4, 5, 6, np.nan],
     )
 ).replace(
     r"^\s+$",
-    np.NaN,
+    np.nan,
     regex=True
 ).replace(
     "",
-    np.NaN,
+    np.nan,
     regex=True
 ).astype(
     dtype={
@@ -263,23 +263,23 @@ def test_delete_empty_columns():
     result1 = dd.delete_empty_columns(df=df)
     expected1 = pd.DataFrame(
         data=dict(
-            floats=[1.0, np.NaN, 3.0, np.NaN, 5.0, 6.0, np.NaN],
-            text=["A", "B", "C", "D", "E", "F", np.NaN],
+            floats=[1.0, np.nan, 3.0, np.nan, 5.0, 6.0, np.nan],
+            text=["A", "B", "C", "D", "E", "F", np.nan],
             dates=[
                 "1956-06-08", "1956-06-08",
                 "1956-06-08", "1956-06-08",
                 "1956-06-08", "1956-06-08",
                 pd.NaT
             ],
-            integers=[1, 2, np.NaN, 4, 5, 6, np.NaN],
+            integers=[1, 2, np.nan, 4, 5, 6, np.nan],
         )
     ).replace(
         r"^\s+$",
-        np.NaN,
+        np.nan,
         regex=True
     ).replace(
         "",
-        np.NaN,
+        np.nan,
         regex=True
     ).astype(
         dtype={
@@ -298,28 +298,28 @@ def test_delete_empty_columns():
     )
     expected2 = pd.DataFrame(
         data=dict(
-            floats=[1.0, np.NaN, 3.0, np.NaN, 5.0, 6.0, np.NaN],
-            text=["A", "B", "C", "D", "E", "F", np.NaN],
+            floats=[1.0, np.nan, 3.0, np.nan, 5.0, 6.0, np.nan],
+            text=["A", "B", "C", "D", "E", "F", np.nan],
             dates=[
                 "1956-06-08", "1956-06-08",
                 "1956-06-08", "1956-06-08",
                 "1956-06-08", "1956-06-08",
                 pd.NaT
             ],
-            all_nan=[np.NaN, np.NaN, np.NaN, np.NaN, np.NaN, np.NaN, np.NaN],
+            all_nan=[np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan],
             all_nat=[pd.NaT, pd.NaT, pd.NaT, pd.NaT, pd.NaT, pd.NaT, pd.NaT],
             all_none=[None, None, None, None, None, None, None],
             all_space=["", " ", "", " ", "", "", ""],
-            nan_space=[np.NaN, "", " ", np.NaN, np.NaN, np.NaN, np.NaN],
-            integers=[1, 2, np.NaN, 4, 5, 6, np.NaN],
+            nan_space=[np.nan, "", " ", np.nan, np.nan, np.nan, np.nan],
+            integers=[1, 2, np.nan, 4, 5, 6, np.nan],
         )
     ).replace(
         r"^\s+$",
-        np.NaN,
+        np.nan,
         regex=True
     ).replace(
         "",
-        np.NaN,
+        np.nan,
         regex=True
     ).astype(
         dtype={
@@ -344,30 +344,30 @@ def test_delete_empty_columns():
     )
     expected3 = pd.DataFrame(
         data=dict(
-            floats=[1.0, np.NaN, 3.0, np.NaN, 5.0, 6.0, np.NaN],
-            text=["A", "B", "C", "D", "E", "F", np.NaN],
+            floats=[1.0, np.nan, 3.0, np.nan, 5.0, 6.0, np.nan],
+            text=["A", "B", "C", "D", "E", "F", np.nan],
             dates=[
                 "1956-06-08", "1956-06-08",
                 "1956-06-08", "1956-06-08",
                 "1956-06-08", "1956-06-08",
                 pd.NaT
             ],
-            all_nan=[np.NaN, np.NaN, np.NaN, np.NaN, np.NaN, np.NaN, np.NaN],
+            all_nan=[np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan],
             all_nat=[pd.NaT, pd.NaT, pd.NaT, pd.NaT, pd.NaT, pd.NaT, pd.NaT],
             all_none=[None, None, None, None, None, None, None],
             all_space=["", " ", "", " ", "", "", ""],
-            nan_space=[np.NaN, "", " ", np.NaN, np.NaN, np.NaN, np.NaN],
-            nan_none=[np.NaN, None, np.NaN, np.NaN, None, np.NaN, None],
-            mixed=[None, np.NaN, pd.NaT, pd.NaT, None, np.NaN, pd.NaT],
-            integers=[1, 2, np.NaN, 4, 5, 6, np.NaN],
+            nan_space=[np.nan, "", " ", np.nan, np.nan, np.nan, np.nan],
+            nan_none=[np.nan, None, np.nan, np.nan, None, np.nan, None],
+            mixed=[None, np.nan, pd.NaT, pd.NaT, None, np.nan, pd.NaT],
+            integers=[1, 2, np.nan, 4, 5, 6, np.nan],
         )
     ).replace(
         r"^\s+$",
-        np.NaN,
+        np.nan,
         regex=True
     ).replace(
         "",
-        np.NaN,
+        np.nan,
         regex=True
     ).astype(
         dtype={
@@ -441,29 +441,29 @@ def test_delete_empty_rows():
     result = dd.delete_empty_rows(df=df)
     expected = pd.DataFrame(
         data=dict(
-            floats=[1.0, np.NaN, 3.0, np.NaN, 5.0, 6.0],
+            floats=[1.0, np.nan, 3.0, np.nan, 5.0, 6.0],
             text=["A", "B", "C", "D", "E", "F"],
             dates=[
                 "1956-06-08", "1956-06-08",
                 "1956-06-08", "1956-06-08",
                 "1956-06-08", "1956-06-08"
             ],
-            all_nan=[np.NaN, np.NaN, np.NaN, np.NaN, np.NaN, np.NaN],
+            all_nan=[np.nan, np.nan, np.nan, np.nan, np.nan, np.nan],
             all_nat=[pd.NaT, pd.NaT, pd.NaT, pd.NaT, pd.NaT, pd.NaT],
             all_none=[None, None, None, None, None, None],
             all_space=["", " ", "", " ", "", ""],
-            nan_space=[np.NaN, "", " ", np.NaN, np.NaN, np.NaN],
-            nan_none=[np.NaN, None, np.NaN, np.NaN, None, np.NaN],
-            mixed=[None, np.NaN, pd.NaT, pd.NaT, None, np.NaN],
-            integers=[1, 2, np.NaN, 4, 5, 6],
+            nan_space=[np.nan, "", " ", np.nan, np.nan, np.nan],
+            nan_none=[np.nan, None, np.nan, np.nan, None, np.nan],
+            mixed=[None, np.nan, pd.NaT, pd.NaT, None, np.nan],
+            integers=[1, 2, np.nan, 4, 5, 6],
         )
     ).replace(
         r"^\s+$",
-        np.NaN,
+        np.nan,
         regex=True
     ).replace(
         "",
-        np.NaN,
+        np.nan,
         regex=True
     ).astype(
         dtype={
