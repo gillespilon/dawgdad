@@ -1,5 +1,8 @@
-from pytest import approx, mark, raises
-from shapely.geometry import Point
+from pytest import approx, fixture, mark, raises
+from shapely.geometry import Point, Polygon
+import matplotlib.pyplot as plt
+from matplotlib import axes
+import geopandas as gp
 import dawgdad as dd
 import pandas as pd
 
