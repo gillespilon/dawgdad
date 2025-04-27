@@ -838,7 +838,7 @@ def read_file(
     nrows : int | None = None
         The number of rows to read.
     skip_blank_lines : bool = True
-        If True, skip over blank lines rather than interpreting as NaN values.
+        If True, skip over blank lines rather than interpreting as nan values.
     encoding : str = "utf-8"
         Encoding to use for UTF when reading.
 
@@ -1199,7 +1199,7 @@ def feature_percent_empty(
     *, df: pd.DataFrame, columns: list[str], threshold: float
 ) -> list[str]:
     """
-    Remove features that have NaN > threshold.
+    Remove features that have nan > threshold.
 
     Parameters
     ----------
@@ -1452,7 +1452,7 @@ def create_dataframe(
     size : int = 42
         The number of rows to create.
     fraction_nan : float = 0.13
-        The fraction of the DataFrame rows to contain NaN.
+        The fraction of the DataFrame rows to contain nan.
 
     Returns
     -------
@@ -2719,8 +2719,8 @@ def delete_empty_rows(
     df.loc[~((df[look_in_columns].isna().sum(axis=1)) == (len(specific_columns))), :]
 
     """
-    df = df.replace(r"^\s*$", np.NaN, regex=True).replace(
-        "", np.NaN, regex=True
+    df = df.replace(r"^\s*$", np.nan, regex=True).replace(
+        "", np.nan, regex=True
     )
     if list_columns:
         df = df.dropna(axis="index", subset=list_columns)
@@ -2769,8 +2769,8 @@ def delete_empty_columns(
     Delete columns where all elements are missing.
     df.loc[:, ~df.isna().all()]
     """
-    df = df.replace(r"^\s*$", np.NaN, regex=True).replace(
-        "", np.NaN, regex=True
+    df = df.replace(r"^\s*$", np.nan, regex=True).replace(
+        "", np.nan, regex=True
     )
     if list_empty_columns:
         if (
