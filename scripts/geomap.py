@@ -42,8 +42,8 @@ def main():
     )
     # Set a title for the plot
     ax.set_title("Simple Map with Locations")
-    # Save the plot as an SVG file
-    plt.savefig("geomap.svg")
+    # Save the plot as a pgn file
+    plt.savefig("geomap.png")
 
 
 if __name__ == "__main__":
