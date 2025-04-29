@@ -12,3 +12,5 @@ Scripts
 :doc:`piecewise_natural_cubic_spline`
 
 :doc:`y1_y2_x_line_charts_separate_y_axes`
+
+:doc:`geomap`
