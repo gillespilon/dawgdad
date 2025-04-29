@@ -53,6 +53,7 @@ Why **dawgdad**?
    exponentially_weighted_moving_average_y_x_line_plot.rst
    piecewise_natural_cubic_spline.rst
    y1_y2_x_line_charts_separate_y_axes.rst
+   geomap.rst
 
 Indices and tables
 ==================
