@@ -3314,6 +3314,46 @@ def geomap(
     -------
     ax: axes.Axes
         A matplotlib Axes.
+
+    Example
+    -------
+
+    >>> from shapely.geometry import Polygon, Point
+    >>> import matplotlib.pyplot as plt
+    >>> import geopandas as gp
+    >>> import dawgdad as dd
+    >>>
+    >>>
+    >>> def main():
+    >>>     map_data = {
+    >>>         "name": ["Region A"],
+    >>>         "geometry": [Polygon([(0, 0), (0, 1), (1, 1), (1, 0)])]
+    >>>     }
+    >>>     map_gdf = gp.GeoDataFrame(map_data, crs="EPSG:4326")
+    >>>     locations_data = {
+    >>>         "code": ["P1", "P2"],
+    >>>         "geometry": [Point(0.2, 0.3), Point(0.7, 0.8)]
+    >>>     }
+    >>>     locations_gdf = gp.GeoDataFrame(locations_data, crs="EPSG:4326")
+    >>>     ax = dd.geomap(
+    >>>         map_file=map_gdf,
+    >>>         locations_file=locations_gdf,
+    >>>         map_colour="lightblue",
+    >>>         edge_colour="black",
+    >>>         line_width=1,
+    >>>         marker_type="o",
+    >>>         marker_size=10,
+    >>>         point_colour="red",
+    >>>         text_colour="blue",
+    >>>         code=locations_gdf["code"].tolist(),
+    >>>         figsize=(6, 6),
+    >>>     )
+    >>>     ax.set_title("Simple Map with Locations")
+    >>>     plt.savefig("geomap.svg")
+    >>>
+    >>>
+    >>> if __name__ == "__main__":
+    >>>     main()
     """
     if ax is None:
         fig = plt.figure(figsize=figsize)
